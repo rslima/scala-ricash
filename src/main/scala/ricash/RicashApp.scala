@@ -3,6 +3,7 @@ package ricash
 import org.http4s.dsl._
 import org.http4s.server.HttpService
 import org.http4s.server.jetty.JettyBuilder
+import ricash.users.UserQueries
 
 /**
   * Created by rslima on 09/11/15.
@@ -18,7 +19,7 @@ object RicashApp {
 
   def service = HttpService {
     case r @ GET -> Root ⇒
-      Ok("It Works!")
+      Ok(UserQueries.allUsers)
 
   }
 
