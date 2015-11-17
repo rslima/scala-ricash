@@ -17,7 +17,7 @@ object RicashApp {
   def main (args: Array[String]) {
     JettyBuilder.
       bindLocal(8080).
-      mountService(service).
+      mountService(service,"/api").
       run
   }
 
