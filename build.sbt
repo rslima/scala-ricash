@@ -11,6 +11,7 @@ lazy val ricash = (project in file(".")).
       "org.http4s" %% "http4s-argonaut" % "0.10.1",
       "org.tpolecat" %% "doobie-core" % "0.2.3",
       "org.tpolecat" %% "doobie-contrib-postgresql" % "0.2.3",
-      "org.tpolecat" %% "doobie-contrib-hikari" % "0.2.3"
+      "org.tpolecat" %% "doobie-contrib-hikari" % "0.2.3",
+      "ch.qos.logback" % "logback-classic" % "1.1.3"
     )
   )
