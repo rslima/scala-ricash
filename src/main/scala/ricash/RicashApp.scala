@@ -1,11 +1,14 @@
 package ricash
 
+import org.http4s.ContentCoding
 import org.http4s.StaticFile
 import org.http4s.dsl._
+import org.http4s.headers.`Content-Encoding`
 import org.http4s.server.HttpService
 import org.http4s.server.Router
 import org.http4s.server.jetty.JettyBuilder
 import org.http4s.argonaut._
+import org.http4s.util.CaseInsensitiveString
 import ricash.users.UserQueries
 import ricash.users.User
 
@@ -29,14 +32,14 @@ object RicashApp {
 
   def apiService = HttpService {
     case r @ GET -> Root ⇒
-      Ok(UserQueries.allUsers)
+      Ok(UserQueries.allUsers).putHeaders(`Content-Encoding`(ContentCoding(CaseInsensitiveString("UTF-8"))))
   }
 
   def rootService = HttpService {
     case r if r.pathInfo.endsWith("/") ⇒
-      StaticFile.fromResource(r.pathInfo + "index.html", Some(r)).fold(NotFound())(Task.now)
-    case req ⇒
-      StaticFile.fromResource(req.pathInfo, Some(req)).fold(NotFound())(Task.now)
+      StaticFile.fromResource("/web" + r.pathInfo + "index.html", Some(r)).fold(NotFound())(Task.now)
+    case r ⇒
+      StaticFile.fromResource("/web" + r.pathInfo, Some(r)).fold(NotFound())(Task.now)
   }
 
 }
