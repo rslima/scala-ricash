@@ -12,6 +12,7 @@ lazy val ricash = (project in file(".")).
       "org.tpolecat" %% "doobie-core" % "0.2.3",
       "org.tpolecat" %% "doobie-contrib-postgresql" % "0.2.3",
       "org.tpolecat" %% "doobie-contrib-hikari" % "0.2.3",
+      "org.webjars.bower" % "bootstrap" % "3.3.6",
       "ch.qos.logback" % "logback-classic" % "1.1.3"
     )
   )
