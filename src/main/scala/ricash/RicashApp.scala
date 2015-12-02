@@ -36,6 +36,8 @@ object RicashApp {
   }
 
   def rootService = HttpService {
+    case r if r.pathInfo.startsWith("/webjars") ⇒
+      StaticFile.fromResource("/META-INF/resources" + r.pathInfo, Some(r)).fold(NotFound())(Task.now)
     case r if r.pathInfo.endsWith("/") ⇒
       StaticFile.fromResource("/web" + r.pathInfo + "index.html", Some(r)).fold(NotFound())(Task.now)
     case r ⇒
